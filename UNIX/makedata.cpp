@@ -18,19 +18,32 @@ using namespace std;
 #define INF 0x7fffffff
 #define LL long long
 const int maxn = 1e6 + 100;
-const LL maxdata = 2e9;
+const LL maxdata = 1e5;
 /*************************/
-LL mrand(LL mod = maxdata); //生成一个随机数
-void randLine(int n,LL mod = maxdata); //生成一行n个随机数
+const LL R[] = {1e1,1e2,1e3,1e4,1e5,1e6,1e7,1e8,1e9,1e10,1e11,1e12,1e13,1e14,1e15};
+LL mrand(LL mod = maxdata);
+void randLine(int n,LL mod = maxdata);
+void wait();
+
 int main()
 {
-	srand((int)time(0));
-	
+	wait();
+	srand((int)time(0)+rand());
+	int t=mrand(10000);
+	cout<<t<<endl;
+	randLine(t);
 	return 0;
 }
+
+void wait()
+{
+	int t=clock();
+	while (clock()==t);
+}
+
 LL mrand(LL mod)
 {
-	return rand()%mod+1;
+	return rand()%mod%(R[rand()%15])+1;
 }
 void randLine(int n,LL mod)
 {
