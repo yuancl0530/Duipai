@@ -41,10 +41,10 @@ void check(int t)
 {
 	int wrong = 0;
 	for (int i = 1;i <= t;i++){
-		run(makedata+" >input");
-		run(testname+" <input >output1");
-		run(stdname +" <input >output2");
-		if (run("fc output1 output2")){
+		run(makedata+" >input.txt");
+		run(testname+" <input.txt >output1.txt");
+		run(stdname +" <input.txt >output2.txt");
+		if (run("fc output1.txt output2.txt")){
 			wrong++;
 			saveWrong();
 			cout<<"Wrong Answer on test"<<i<<endl;
@@ -59,7 +59,7 @@ void check(int t)
 	else{
 		cout<<"Display wrong data?(y/n):";
 		char c;cin>>c;
-		if (c == 'y') run("type WrongData");
+		if (c == 'y') run("type WrongData.txt");
 	}
 }
 int run(string s)
@@ -81,15 +81,15 @@ void saveWrong()
 	static int t = 0;
 	++t;
 	stringstream tt;tt<<t;
-	run("echo \"Test Data "+tt.str()+":\" >> WrongData");
-	run("type input >> WrongData");
-	run("echo \"---------------\" >> WrongData");
-	run("echo \"Correct Answer:\" >> WrongData");
-	run("type output2 >> WrongData");
-	run("echo \"--------------\" >>WrongData");
-	run("echo \"Output Answer:\" >> WrongData");
-	run("type output1 >> WrongData");
-	run("echo \"---------------------------\" >>WrongData");
+	run("echo \"Test Data "+tt.str()+":\" >> WrongData.txt");
+	run("type input >> WrongData.txt");
+	run("echo \"---------------\" >> WrongData.txt");
+	run("echo \"Correct Answer:\" >> WrongData.txt");
+	run("type output2 >> WrongData.txt");
+	run("echo \"--------------\" >>WrongData.txt");
+	run("echo \"Output Answer:\" >> WrongData.txt");
+	run("type output1 >> WrongData.txt");
+	run("echo \"---------------------------\" >>WrongData.txt");
 
 }
 void build()
@@ -97,6 +97,6 @@ void build()
 	encode(makedata);
 	encode(testname);
 	encode(stdname);
-	run("echo 'a' > WrongData");
-	run("del WrongData");
+	run("echo 'a' > WrongData.txt");
+	run("del WrongData.txt");
 }
