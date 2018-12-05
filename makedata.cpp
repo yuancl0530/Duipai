@@ -19,21 +19,26 @@ using namespace std;
 #define INF 0x7fffffff
 #define LL long long
 const int maxn = 1e6 + 100;
-const LL maxdata = 1e2;//随机数最大值
 void creatseed();
 LL GetTime();
-LL mrand(LL mod = maxdata);//获取一个随机数
+/*****************************************************************************/
+const LL maxdata = 1e5;//默认随机数最大值
+//char str[]="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRTSUVWXYZ0123456789";
+//char str[]="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRTSUVWXYZ";
+//char str[]="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+char str[]="abcdefghijklmnopqrstuvwxyz";
+//char str[]="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+LL mrand(LL mod = maxdata);//获取一个随机数[1,n]
 void randLine(int n,LL mod = maxdata);//获取n个随机数
+void getStr(int n);//生成一个随机字符串
+int f[maxn];
 int main()
 {
 	creatseed();
-	int t=mrand(10000);
-	cout<<t<<endl;
-	randLine(t);
+	cout<<mrand(64)<<endl;
 	return 0;
 }
-
-/*****************************/
+/***************************************************************************/
 LL mrand(LL mod)
 {
 	return rand()%mod+1;
@@ -45,8 +50,16 @@ void randLine(int n,LL mod)
 	}
 	cout<<endl;
 }
-
-
+void getStr(int n)
+{
+	int len=strlen(str);
+	for (int i=0;i<n;++i){
+		int t=mrand()%len;
+		cout<<str[t];
+	}
+	cout<<endl;
+}
+/*************************************************************************/
 LL GetTime()
 {
 	struct timeval tv;
